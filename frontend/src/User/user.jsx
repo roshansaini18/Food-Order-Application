@@ -13,12 +13,12 @@ const User = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
-    <HashRouter>
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
         {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
 
         <Routes>
+ <HashRouter>
           <Route path="/" element={<Navigate to="home" replace />} />
           <Route path="home" element={<Home />} />
           <Route path="cart" element={<Cart />} />
@@ -28,11 +28,11 @@ const User = () => {
 
           {/* Catch-all route for unknown paths */}
           <Route path="*" element={<Navigate to="/" replace />} />
+ </HashRouter>
         </Routes>
 
         <Footer />
       </div>
-    </HashRouter>
   );
 };
 
