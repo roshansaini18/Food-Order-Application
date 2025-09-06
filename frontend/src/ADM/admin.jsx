@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import List from './pages/List/List';
 import Orders from './pages/Orders/Orders';
 import Add from './pages/Add/Add';
@@ -10,6 +10,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = () => {
   const url = "https://food-order-application-backend.onrender.com";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+      // 👇 on refresh, send user back to home
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <div>
@@ -33,5 +41,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
-
