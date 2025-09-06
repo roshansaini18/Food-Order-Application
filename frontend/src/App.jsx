@@ -8,7 +8,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Login Page */}
         <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
@@ -22,7 +22,7 @@ function App() {
         {/* 👇 Catch all: redirect anything unknown to base URL */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
