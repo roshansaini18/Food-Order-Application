@@ -45,3 +45,29 @@ A full-stack food ordering platform built with the **MERN stack** that supports 
 
 ## 🗂️ Project Structure (suggested)  
 
+---
+
+## 🔐 Role-Based Access (RBAC)  
+
+| Area               | User | Admin |
+|--------------------|:----:|:-----:|
+| Browse Menu        |  ✅  |  ✅   |
+| Add to Cart        |  ✅  |  —    |
+| Checkout (Stripe)  |  ✅  |  —    |
+| View Own Orders    |  ✅  |  —    |
+| Add/Edit Items     |  —   |  ✅   |
+| Manage All Orders  |  —   |  ✅   |
+| Update Order Status|  —   |  ✅   |
+
+---
+
+## ⚙️ Local Development  
+
+> Requires **Node.js ≥ 18**, **MongoDB Atlas** (or local MongoDB), and a **Stripe account** (test mode).  
+
+### 1) Clone  
+
+```bash
+git clone <your-repo-url> snackify
+cd snackify
+
