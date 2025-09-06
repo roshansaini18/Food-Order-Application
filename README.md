@@ -80,19 +80,19 @@ STRIPE_SECRET_KEY=<sk_test_xxx>
 CLIENT_URL=http://localhost:5173
 
 Frontend Setup
-cd ../frontend
-cp .env.example .env
-npm install
-npm run dev   # Vite on http://localhost:5173
+-cd ../frontend
+-cp .env.example .env
+-npm install
+-npm run dev   # Vite on http://localhost:5173
 
 
 💳 Stripe (Test Mode)
 
-Use Stripe’s test card to simulate payments:
-Card: 4242 4242 4242 4242
-Expiry: any future date
-CVC: any 3 digits
-ZIP: any 5 digits
+-Use Stripe’s test card to simulate payments:
+-Card: 4242 4242 4242 4242
+-Expiry: any future date
+-CVC: any 3 digits
+-ZIP: any 5 digits
 
 No real charges occur in test mode.
 
