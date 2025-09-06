@@ -22,7 +22,7 @@ A full-stack food ordering platform built with the **MERN stack** that supports 
 - Add/remove items to **Cart**  
 - Checkout with **Stripe** (test mode)  
 - View **Order history** & real-time status  
-- Guest mode (browse & build cart; prompt to sign in on checkout)  
+- Guest mode (browse & build cart)  
 
 #### 👨‍💼 Admin  
 - **Add New Item** (image, name, description, type/category, price)  
