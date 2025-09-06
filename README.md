@@ -79,6 +79,7 @@ JWT_SECRET=<secure-random-string>
 STRIPE_SECRET_KEY=<sk_test_xxx>
 CLIENT_URL=http://localhost:5173
 
+
 Frontend Setup
 -cd ../frontend
 -cp .env.example .env
