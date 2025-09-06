@@ -65,36 +65,49 @@ A full-stack food ordering platform built with the **MERN stack** that supports 
 
 > Requires **Node.js ≥ 18**, **MongoDB Atlas** (or local MongoDB), and a **Stripe account** (test mode).  
 
-###  Clone  
-Backend Setup
+Here’s the fixed version that will render correctly:
+
+## 📂 Clone & Setup  
+
+### 🔧 Backend Setup  
+```bash
 cd backend
 cp .env.example .env
 npm install
 npm run dev   # nodemon (or npm start)
 
-###.env setup
+
+.env configuration
+
 PORT=5000
 MONGO_URI=<your-mongodb-atlas-connection-string>
 JWT_SECRET=<secure-random-string>
 STRIPE_SECRET_KEY=<sk_test_xxx>
 CLIENT_URL=http://localhost:5173
 
-
-Frontend Setup
--cd ../frontend
--cp .env.example .env
--npm install
--npm run dev   # Vite on http://localhost:5173
-
+🎨 Frontend Setup
+cd ../frontend
+cp .env.example .env
+npm install
+npm run dev   # Vite on http://localhost:5173
 
 💳 Stripe (Test Mode)
 
--Use Stripe’s test card to simulate payments:
--Card: 4242 4242 4242 4242
--Expiry: any future date
--CVC: any 3 digits
--ZIP: any 5 digits
+Use Stripe’s test card to simulate payments:
 
-No real charges occur in test mode.
+Card: 4242 4242 4242 4242
 
-Made with 💖 By ROSHAN SAINI
+Expiry: any future date
+
+CVC: any 3 digits
+
+ZIP: any 5 digits
+
+⚠️ No real charges occur in test mode.
+
+💖 Made with love by ROSHAN SAINI
+
+
+👉 Copy this into your README — it will display **separately formatted blocks** instead of a messy single line.  
+
+Do you want me to reformat your **entire README** with this fixed structure so you won’t face that issue again?
