@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 //placing user order from frontend
 const placeOrder = async (req,res)=>{
 
-    const frontend_url = "http://localhost:5173/user";
+    const frontend_url = "https://github.com/roshansaini18/Food-Order-Application";
     const LkrToUsdConversionRate = 0.003;   // Conversion rate from LKR to USD
 
     try {
