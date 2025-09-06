@@ -5,8 +5,11 @@ import { StoreContext } from "../context/StoreContext.jsx";
 import "./login.css";
 
 const LoginPage = () => {
-  const { url, setToken } = useContext(StoreContext);
+  const { setToken } = useContext(StoreContext);
   const navigate = useNavigate();
+
+  // Directly set your hosted backend URL
+  const url = "https://food-order-application-backend.onrender.com";
 
   const [currentState, setCurrentState] = useState("Login");
   const [data, setData] = useState({
@@ -22,7 +25,8 @@ const LoginPage = () => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    const endpoint = currentState === "Login" ? "/api/user/login" : "/api/user/register";
+    const endpoint =
+      currentState === "Login" ? "/api/user/login" : "/api/user/register";
     const newUrl = url + endpoint;
 
     try {
