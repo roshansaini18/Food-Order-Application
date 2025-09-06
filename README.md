@@ -104,4 +104,4 @@ ZIP: any 5 digits
 ⚠️ No real charges occur in test mode.
 
 
-                                                                                      💖 Made with love by ROSHAN SAINI
+    Made with 💖 by ROSHAN SAINI
