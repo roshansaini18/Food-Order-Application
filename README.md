@@ -72,7 +72,7 @@ cp .env.example .env
 npm install
 npm run dev   # nodemon (or npm start)
 
-.env setup
+###.env setup
 PORT=5000
 MONGO_URI=<your-mongodb-atlas-connection-string>
 JWT_SECRET=<secure-random-string>
