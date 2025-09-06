@@ -7,9 +7,10 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.js',
   },
+  base: '/', // 👈 ensures assets are loaded correctly no matter the route
   server: {
     port: 5173,
     open: true,
-    historyApiFallback: true, // 👈 Needed for React Router in dev
+    historyApiFallback: true,
   },
 })
