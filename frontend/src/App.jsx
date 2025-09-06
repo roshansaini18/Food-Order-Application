@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import LoginPage from "../src/Login/login";
 import Admin from "../src/ADM/admin";
@@ -18,6 +18,9 @@ function App() {
 
         {/* User Dashboard */}
         <Route path="/user/*" element={<User />} />
+
+        {/* 👇 Catch all: redirect anything unknown to base URL */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
