@@ -8,16 +8,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <Routes>
-      {/* Login Page */}
-      <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
+    <BrowserRouter>
+      <Routes>
+        {/* Login Page */}
+        <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
 
-      {/* Admin Dashboard (no protection) */}
-      <Route path="/admin/*" element={<Admin currentUser={currentUser} />} />
+        {/* Admin Dashboard */}
+        <Route path="/admin/*" element={<Admin currentUser={currentUser} />} />
 
-      {/* User Dashboard (no protection) */}
-      <Route path="/user/*" element={<User />} />
-    </Routes>
+        {/* User Dashboard */}
+        <Route path="/user/*" element={<User />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
