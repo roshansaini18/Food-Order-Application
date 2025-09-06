@@ -1,4 +1,4 @@
-import { BrowserRouter,HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import LoginPage from "../src/Login/login";
 import Admin from "../src/ADM/admin";
@@ -8,7 +8,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         {/* Login Page */}
         <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
@@ -22,7 +22,7 @@ function App() {
         {/* 👇 Catch all: redirect anything unknown to base URL */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
