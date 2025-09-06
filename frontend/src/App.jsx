@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter,HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import LoginPage from "../src/Login/login";
 import Admin from "../src/ADM/admin";
