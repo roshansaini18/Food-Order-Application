@@ -17,12 +17,13 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 
 // CORS configuration
-// Option 1: Allow any origin (for testing)
-app.use(cors());
+// Allow only your hosted frontend URL (replace with your Render frontend URL)
+const FRONTEND_URL ="https://food-order-application-kk8t.onrender.com";
 
-// Option 2: Allow only your frontend URL (recommended for production)
-// const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-// app.use(cors({ origin: FRONTEND_URL }));
+app.use(cors({
+    origin: FRONTEND_URL,
+    credentials: true, // if you plan to send cookies or auth headers
+}));
 
 // DB connection
 connectDB();
