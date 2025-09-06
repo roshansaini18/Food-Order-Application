@@ -1,0 +1,95 @@
+.explore-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #262626;
+  font-weight: 500;
+}
+
+.explore-menu-text {
+  max-width: 75%;
+  color: #808080;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.explore-menu-list {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+  margin: 20px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.explore-menu-list::-webkit-scrollbar {
+  display: none;
+}
+
+.explore-menu-list-item {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.explore-menu-list-item img {
+  width: 7.5vw;
+  min-width: 80px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.explore-menu-list-item p {
+  margin-top: 8px;
+  font-size: max(1.2vw, 15px);
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+/* ✅ Different category themes */
+.explore-menu-list-item.pizza img {
+  border-color: #ff5733;
+}
+.explore-menu-list-item.burger img {
+  border-color: #f4c542;
+}
+.explore-menu-list-item.salad img {
+  border-color: #28a745;
+}
+.explore-menu-list-item.dessert img {
+  border-color: #d63384;
+}
+.explore-menu-list-item.drinks img {
+  border-color: #007bff;
+}
+
+/* ✅ Active state glow */
+.explore-menu-list-item.active img {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.explore-menu-list-item:hover {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+}
+
+.explore-menu-list-item:hover p {
+  color: #000;
+}
+
+.explore-menu hr {
+  margin: 10px 0;
+  height: 2px;
+  background-color: #e2e2e2;
+  border: none;
+}
+
+@media (max-width: 1050px) {
+  .explore-menu-text {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}

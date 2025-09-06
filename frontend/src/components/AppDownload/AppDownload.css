@@ -1,0 +1,84 @@
+.app-download {
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+  font-weight: 500;
+  background: linear-gradient(135deg, #ffe0e9, #f0faff);
+  padding: 50px 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.app-download-title {
+  font-size: max(2.5vw, 22px);
+  font-weight: 700;
+  color: #ff4d6d;
+}
+
+.app-download-title span {
+  color: #0077b6; /* contrast highlight */
+}
+
+.app-download-subtext {
+  font-size: 1rem;
+  color: #444;
+  margin: 15px 0 30px;
+}
+
+.app-download-platforms {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.subscribe-btn,
+.whatsapp-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.subscribe-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: white;
+}
+
+.subscribe-btn:hover,
+.whatsapp-btn:hover {
+  transform: scale(1.05);
+}
+
+.app-socials {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}

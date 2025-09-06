@@ -1,0 +1,58 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1e40af;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(206, 31, 31);
+  position: fixed;
+  top: 60px; /* Push below navbar (assuming navbar height ~60px) */
+  left: 0;
+  z-index: 5; /* Make sure it stays below navbar if navbar has higher z-index */
+  overflow-y: auto; /* Scroll if content exceeds viewport */
+}
+
+.sidebar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px; /* Optional extra spacing */
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  color: rgb(182, 25, 25);
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sidebar-option img {
+  width: 22px;
+  height: 22px;
+}
+
+.sidebar-option p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.sidebar-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Active link */
+.sidebar-option.active {
+  background: #facc15; /* yellow highlight */
+  color: black;
+}
+
+.sidebar-option.active p {
+  font-weight: 600;
+}

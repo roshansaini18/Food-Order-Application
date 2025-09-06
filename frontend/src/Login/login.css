@@ -1,0 +1,97 @@
+/* Page background */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff; /* keep page white */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container */
+.login-container {
+  background: linear-gradient(90deg, #ff7043, #ff8a65); /* same as navbar */
+  padding: 35px 30px;
+  width: 380px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Heading */
+.login-container h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Inputs */
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.login-inputs input,
+.login-inputs select {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+}
+
+/* Input background white for contrast */
+.login-inputs input,
+.login-inputs select {
+  background: #fff;
+  color: #333;
+}
+
+/* Submit Button */
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  color: #ff7043;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffe0d2;
+}
+
+/* Checkbox and terms */
+.login-condition {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.login-condition input {
+  margin-right: 8px;
+}
+
+/* Switch login/signup text */
+.login-container p {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-container span {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}

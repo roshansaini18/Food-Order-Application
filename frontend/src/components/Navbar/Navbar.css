@@ -1,0 +1,165 @@
+.navbar {
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ff7043, #ff8a65);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  font-size: 16px;
+}
+
+.navbar-menu a, .navbar-menu Link {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  padding: 5px 0;
+  position: relative;
+}
+
+.navbar-menu a:hover,
+.navbar-menu .active {
+  color: #fff;
+}
+
+.navbar-menu .active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: yellow;
+  border-radius: 2px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.cart-link:hover {
+  transform: scale(1.1);
+}
+
+.dot {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  width: 10px;
+  height: 10px;
+  background: #ffeb3b;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #ffc107;
+}
+
+.signin-btn {
+  background: #fff;
+  color: #ff7043;
+  padding: 8px 20px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background: #ffe0d2;
+}
+
+/* Profile */
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  color: #ff7043;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+.navbar-profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: linear-gradient(180deg, #fff, #ffe6db);
+  color: #333;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  min-width: 200px;
+  z-index: 10;
+}
+
+.navbar-profile:hover .navbar-profile-dropdown {
+  display: flex;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.profile-info .email {
+  font-size: 12px;
+  color: #555;
+}
+
+/* Logout button on navbar */
+.logout-btn-navbar {
+  background: #e53935;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn-navbar:hover {
+  background: #ff6f60;
+}
