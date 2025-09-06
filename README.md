@@ -65,9 +65,35 @@ A full-stack food ordering platform built with the **MERN stack** that supports 
 
 > Requires **Node.js ≥ 18**, **MongoDB Atlas** (or local MongoDB), and a **Stripe account** (test mode).  
 
-### 1) Clone  
+###  Clone  
+Backend Setup
+cd backend
+cp .env.example .env
+npm install
+npm run dev   # nodemon (or npm start)
 
-```bash
-git clone <your-repo-url> snackify
-cd snackify
+.env setup
+PORT=5000
+MONGO_URI=<your-mongodb-atlas-connection-string>
+JWT_SECRET=<secure-random-string>
+STRIPE_SECRET_KEY=<sk_test_xxx>
+CLIENT_URL=http://localhost:5173
 
+Frontend Setup
+cd ../frontend
+cp .env.example .env
+npm install
+npm run dev   # Vite on http://localhost:5173
+
+
+💳 Stripe (Test Mode)
+
+Use Stripe’s test card to simulate payments:
+Card: 4242 4242 4242 4242
+Expiry: any future date
+CVC: any 3 digits
+ZIP: any 5 digits
+
+No real charges occur in test mode.
+
+Made with 💖 By ROSHAN SAINI
