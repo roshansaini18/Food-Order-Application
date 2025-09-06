@@ -65,8 +65,6 @@ A full-stack food ordering platform built with the **MERN stack** that supports 
 
 > Requires **Node.js ≥ 18**, **MongoDB Atlas** (or local MongoDB), and a **Stripe account** (test mode).  
 
-Here’s the fixed version that will render correctly:
-
 ## 📂 Clone & Setup  
 
 ### 🔧 Backend Setup  
@@ -105,9 +103,5 @@ ZIP: any 5 digits
 
 ⚠️ No real charges occur in test mode.
 
-💖 Made with love by ROSHAN SAINI
 
-
-👉 Copy this into your README — it will display **separately formatted blocks** instead of a messy single line.  
-
-Do you want me to reformat your **entire README** with this fixed structure so you won’t face that issue again?
+                                                                                      💖 Made with love by ROSHAN SAINI
