@@ -39,7 +39,7 @@ function App() {
     return children;
   };
 
-  const url = "https://food-order-application-backend.onrender.com/";
+  const url = "https://food-order-application-backend.onrender.com";
 
   return (
     <BrowserRouter>
