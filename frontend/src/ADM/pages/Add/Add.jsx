@@ -52,7 +52,7 @@ const Add = ({ url }) => {
             <p className="text-slate-500 mt-2">Create a new product for the menu.</p>
           </div>
 
-          <form onSubmit={onSubmitHandler} className="space-y-6 sm:space-y-8">
+          <form onSubmit={onSubmitHandler} className="space-y-6">
 
             {/* Image Upload */}
             <div className="flex items-center space-x-4">
@@ -82,39 +82,52 @@ const Add = ({ url }) => {
               <p className="text-sm text-slate-500">PNG, JPG, WEBP</p>
             </div>
 
-            {/* Name and Description */}
-            <div className="space-y-6 sm:space-y-8">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Product Name</label>
-                <input
-                  type="text" name="name" id="name"
-                  value={data.name} onChange={onChangeHandler}
-                  placeholder="e.g. Classic Margherita"
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                  required
-                />
-              </div>
+            {/* Name */}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                Product Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={data.name}
+                onChange={onChangeHandler}
+                placeholder="e.g. Classic Margherita"
+                className="w-full px-4 py-2 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                required
+              />
+            </div>
 
-              <div>
-                <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-2">Product Description</label>
-                <textarea
-                  name="description" id="description" rows="6"
-                  value={data.description} onChange={onChangeHandler}
-                  placeholder="Describe the item, ingredients, etc."
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                  required
-                />
-              </div>
+            {/* Description */}
+            <div>
+              <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-2">
+                Product Description
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                rows="4"
+                value={data.description}
+                onChange={onChangeHandler}
+                placeholder="Describe the item, ingredients, etc."
+                className="w-full px-4 py-2 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                required
+              />
             </div>
 
             {/* Category & Price */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="category" className="block text-sm font-medium text-slate-700 mb-2">Category</label>
+                <label htmlFor="category" className="block text-sm font-medium text-slate-700 mb-2">
+                  Category
+                </label>
                 <select
-                  name="category" id="category"
-                  value={data.category} onChange={onChangeHandler}
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                  name="category"
+                  id="category"
+                  value={data.category}
+                  onChange={onChangeHandler}
+                  className="w-full px-4 py-2 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
                 >
                   <option>Soup</option>
                   <option>Bakery</option>
@@ -128,14 +141,21 @@ const Add = ({ url }) => {
               </div>
 
               <div>
-                <label htmlFor="price" className="block text-sm font-medium text-slate-700 mb-2">Price(Rs:)</label>
+                <label htmlFor="price" className="block text-sm font-medium text-slate-700 mb-2">
+                  Price (Rs:)
+                </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500"></span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500">
+                    ₹
+                  </span>
                   <input
-                    type="number" name="price" id="price"
-                    value={data.price} onChange={onChangeHandler}
+                    type="number"
+                    name="price"
+                    id="price"
+                    value={data.price}
+                    onChange={onChangeHandler}
                     placeholder="0.00"
-                    className="w-3/4 pl-12 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full pl-7 pr-4 py-2 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
                     required
                   />
                 </div>
@@ -143,14 +163,12 @@ const Add = ({ url }) => {
             </div>
 
             {/* Submit Button */}
-           <button
-  type="submit"
-  className="w-1/4 py-3 mt-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-1"
->
-  ADD ITEM
-</button>
-
-
+            <button
+              type="submit"
+              className="w-full sm:w-1/3 py-3 mt-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-1"
+            >
+              ADD ITEM
+            </button>
           </form>
         </div>
       </div>
