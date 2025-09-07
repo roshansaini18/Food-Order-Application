@@ -200,7 +200,7 @@ const AdminLayout = ({ children }) => {
             fontWeight: 500,
           }}
         >
-          Food Restaurant ©{new Date().getFullYear()}
+          Snackify ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>
