@@ -4,19 +4,12 @@ import axios from "axios";
 import { StoreContext } from "../context/StoreContext.jsx";
 import "./login.css";
 
-const LoginPage = () => {
-  const { setToken } = useContext(StoreContext);
+const LoginPage = ({ setCurrentUser }) => {
+  const { url, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  // Directly set your hosted backend URL
-  const url = "https://food-order-application-backend.onrender.com";
-
   const [currentState, setCurrentState] = useState("Login");
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [data, setData] = useState({ name: "", email: "", password: "" });
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -31,10 +24,8 @@ const LoginPage = () => {
 
     try {
       const payload = { ...data };
-
-      // Force userType = "user" only on registration
       if (currentState === "Sign Up") {
-        payload.userType = "user";
+        payload.userType = "user"; // new accounts default to "user"
       }
 
       const response = await axios.post(newUrl, payload);
@@ -44,21 +35,21 @@ const LoginPage = () => {
         const userType =
           currentState === "Sign Up" ? "user" : response.data.userType;
 
-        // Store token & user info
+        // ✅ Store token & user info
         setToken(token);
         localStorage.setItem("token", token);
         localStorage.setItem("userType", userType);
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: response.data.name || data.name,
-            email: response.data.email || data.email,
-            password: data.password,
-            userType,
-          })
-        );
+        const userData = {
+          name: response.data.name || data.name,
+          email: response.data.email || data.email,
+          userType,
+        };
+        localStorage.setItem("user", JSON.stringify(userData));
 
-        // Navigate based on userType
+        // ✅ Update App state
+        setCurrentUser(userData);
+
+        // ✅ Navigate based on role
         if (userType === "admin") navigate("/admin");
         else navigate("/user");
       } else {
@@ -74,6 +65,7 @@ const LoginPage = () => {
     navigate("/user");
   };
 
+  // Auto-login if token exists
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userType = localStorage.getItem("userType");
