@@ -1,161 +1,131 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { assets } from "../../assets/assets";
 import AdminLayout from "../../AdminLayout";
 
-const Add = ({ url }) => {
-  const [image, setImage] = useState(null);
-  const [data, setData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "Soup",
-  });
+const STATUS_TABS = [
+  { label: "Preparing", status: "Food Processing" },
+  { label: "Processing", status: "Out for delivery" },
+  { label: "Delivered", status: "Delivered" }
+];
 
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
-  };
+const Orders = ({ url }) => {
+  const [orders, setOrders] = useState([]);
+  const [selectedTab, setSelectedTab] = useState(0);
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    if (!image) return toast.error("Please select an image.");
-
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("description", data.description);
-    formData.append("price", Number(data.price));
-    formData.append("category", data.category);
-    formData.append("image", image);
-
+  const fetchAllOrders = async () => {
     try {
-      const response = await axios.post(`${url}/api/food/add`, formData);
+      const response = await axios.get(`${url}/api/order/list`);
       if (response.data.success) {
-        setData({ name: "", description: "", price: "", category: "Soup" });
-        setImage(null);
-        toast.success(response.data.message);
-      } else toast.error(response.data.message);
+        setOrders(response.data.data.reverse());
+      } else {
+        toast.error("Error fetching orders");
+      }
     } catch (err) {
-      console.error(err);
-      toast.error("An unexpected error occurred.");
+      toast.error("Server error while fetching orders");
     }
   };
 
+  useEffect(() => {
+    fetchAllOrders();
+  }, []);
+
+  const statusHandler = async (event, orderId) => {
+    try {
+      const response = await axios.post(`${url}/api/order/status`, {
+        orderId,
+        status: event.target.value,
+      });
+      if (response.data.success) {
+        await fetchAllOrders();
+        toast.success("Order status updated.");
+      }
+    } catch (err) {
+      toast.error("Error updating order status");
+    }
+  };
+
+  const tabStatus = STATUS_TABS[selectedTab].status;
+  const filteredOrders = orders.filter(order => order.status === tabStatus);
+
   return (
     <AdminLayout>
-      <div className="bg-slate-100 min-h-screen w-full px-4 sm:px-6 lg:px-12 py-8">
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-10">
+      <div className="p-4 sm:p-6 lg:p-8 w-full min-h-screen">
+        <div className="max-w-7xl mx-auto">
 
-          {/* Header */}
-          <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold text-slate-800">Add New Item</h1>
-            <p className="text-slate-500 mt-2">Create a new product for the menu.</p>
+          {/* Dropdown to filter status */}
+          <div className="mb-6 w-60">
+            <label htmlFor="orderStatus" className="block text-sm font-medium text-slate-700 mb-2">
+              Filter by Status
+            </label>
+            <select
+              id="orderStatus"
+              value={selectedTab}
+              onChange={(e) => setSelectedTab(Number(e.target.value))}
+              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-400 focus:outline-none bg-white"
+            >
+              {STATUS_TABS.map((tab, idx) => (
+                <option key={tab.label} value={idx}>
+                  {tab.label}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <form onSubmit={onSubmitHandler} className="space-y-6 sm:space-y-8">
-
-            {/* Image Upload */}
-            <div className="flex items-center space-x-4">
-              <label
-                htmlFor="image"
-                className={`flex items-center justify-center w-20 h-20 border-2 border-dashed rounded-lg cursor-pointer
-                  ${image ? "border-emerald-500" : "border-slate-300"} hover:border-emerald-500 transition-colors duration-300`}
-              >
-                {image ? (
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt="Preview"
-                    className="h-full w-full object-contain rounded-md"
-                  />
-                ) : (
-                  <span className="text-xs text-slate-400 text-center">Click to upload</span>
-                )}
-              </label>
-              <input
-                type="file"
-                id="image"
-                className="sr-only"
-                accept="image/*"
-                onChange={(e) => setImage(e.target.files[0])}
-                required
-              />
-              <p className="text-sm text-slate-500">PNG, JPG, WEBP</p>
+          {filteredOrders.length === 0 ? (
+            <div className="flex flex-col items-center justify-center text-center py-20 bg-white rounded-lg shadow-md">
+              <img src={assets.parcel_icon} alt="No orders" className="w-16 h-16 opacity-30 mb-4" />
+              <p className="text-lg font-semibold text-slate-600">No Orders in this category</p>
+              <p className="text-slate-400">Orders will appear here as they progress.</p>
             </div>
-
-            {/* Name and Description */}
-            <div className="space-y-6 sm:space-y-8">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Product Name</label>
-                <input
-                  type="text" name="name" id="name"
-                  value={data.name} onChange={onChangeHandler}
-                  placeholder="e.g. Classic Margherita"
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-2">Product Description</label>
-                <textarea
-                  name="description" id="description" rows="6"
-                  value={data.description} onChange={onChangeHandler}
-                  placeholder="Describe the item, ingredients, etc."
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                  required
-                />
-              </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white rounded-lg shadow-md">
+                <thead className="bg-slate-50">
+                  <tr className="border-b border-slate-200">
+                    <th className="py-3 px-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Order Details</th>
+                    <th className="py-3 px-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Customer</th>
+                    <th className="py-3 px-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
+                    <th className="py-3 px-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {filteredOrders.map(order => (
+                    <tr key={order._id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 px-4 align-top">
+                        <p className="font-medium text-slate-800">
+                          {order.items.map(item => `${item.name} x ${item.quantity}`).join(", ")}
+                        </p>
+                        <p className="text-xs text-slate-500 font-mono mt-1">ID: {order._id}</p>
+                      </td>
+                      <td className="py-3 px-4 align-top">
+                        <p className="font-medium text-slate-800">{order.address.firstName} {order.address.lastName}</p>
+                        <p className="text-xs text-slate-500">{order.address.street}, {order.address.city}</p>
+                        <p className="text-xs text-slate-500">{order.address.phone}</p>
+                      </td>
+                      <td className="py-3 px-4 font-bold text-slate-800 align-top">₹{order.amount.toFixed(2)}</td>
+                      <td className="py-3 px-4 align-top">
+                        <select
+                          onChange={(e) => statusHandler(e, order._id)}
+                          value={order.status}
+                          className="px-2 py-1 border border-slate-300 rounded-md text-sm focus:ring-2 focus:ring-emerald-200 outline-none bg-white"
+                        >
+                          <option value="Food Processing">Preparing</option>
+                          <option value="Out for delivery">Processing</option>
+                          <option value="Delivered">Delivered</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-
-            {/* Category & Price */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-              <div>
-                <label htmlFor="category" className="block text-sm font-medium text-slate-700 mb-2">Category</label>
-                <select
-                  name="category" id="category"
-                  value={data.category} onChange={onChangeHandler}
-                  className="w-3/4 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                >
-                  <option>Soup</option>
-                  <option>Bakery</option>
-                  <option>Deserts</option>
-                  <option>Sandwich</option>
-                  <option>Cake</option>
-                  <option>Rice</option>
-                  <option>Pasta</option>
-                  <option>Noodles</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="price" className="block text-sm font-medium text-slate-700 mb-2">Price(Rs:)</label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500"></span>
-                  <input
-                    type="number" name="price" id="price"
-                    value={data.price} onChange={onChangeHandler}
-                    placeholder="0.00"
-                    className="w-3/4 pl-12 px-4 py-6 rounded-md border border-slate-300 bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-           <button
-  type="submit"
-  className="w-1/4 py-3 mt-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-1"
->
-  ADD ITEM
-</button>
-
-
-          </form>
+          )}
         </div>
       </div>
     </AdminLayout>
   );
 };
 
-export default Add;
+export default Orders;
