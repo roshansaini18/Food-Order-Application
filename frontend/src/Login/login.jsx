@@ -61,15 +61,10 @@ const LoginPage = ({ setCurrentUser }) => {
     }
   };
 
-  const guestLogin = () => {
-    navigate("/user");
-  };
-
   // Auto-login if token exists
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userType = localStorage.getItem("userType");
-
     if (token && userType) {
       setToken(token);
       if (userType === "admin") navigate("/admin");
@@ -86,7 +81,6 @@ const LoginPage = ({ setCurrentUser }) => {
         </div>
 
         <h2>{currentState}</h2>
-
         <div className="login-inputs">
           {currentState === "Sign Up" && (
             <input
@@ -115,15 +109,9 @@ const LoginPage = ({ setCurrentUser }) => {
             required
           />
         </div>
-
-        <button type="submit">
+        <button type="submit" className="login-btn">
           {currentState === "Sign Up" ? "Create Account" : "Login"}
         </button>
-
-        <button type="button" className="guest-btn" onClick={guestLogin}>
-          Continue as Guest
-        </button>
-
         {currentState === "Login" ? (
           <p className="switch-text">
             Don't have an account?{" "}
