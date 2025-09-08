@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserLayout from "../../UserLayout";
 
 const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
@@ -33,6 +34,7 @@ const Cart = () => {
   }, [user, url]);
 
   return (
+    <UserLayout>
     <div
       style={{
         padding: "40px 20px",
@@ -210,7 +212,7 @@ const Cart = () => {
           </div>
 
           <button
-            onClick={() => navigate("../order")}
+            onClick={() => navigate("/user/placeorder")}
             style={{
               width: "100%",
               padding: "15px",
@@ -286,6 +288,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
+    </UserLayout>
   );
 };
 
