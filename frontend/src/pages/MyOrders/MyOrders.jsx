@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { assets } from "../../assets/assets";
+import UserLayout from "../../UserLayout";
 
 const colors = {
   primary: "#3498db",
@@ -39,6 +40,7 @@ const MyOrders = () => {
   }, [token]);
 
   return (
+    <UserLayout>
     <div
       style={{
         padding: "50px 20px",
@@ -205,7 +207,9 @@ const MyOrders = () => {
         )}
       </div>
     </div>
+    </UserLayout>
   );
 };
 
 export default MyOrders;
+
